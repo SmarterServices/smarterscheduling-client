@@ -23,8 +23,9 @@ client
   .listLocation(Object.assign(credential, listLocation))
   //.addLocation(Object.assign(credential, addLocation))
   .then(response => {
-    console.log(response);
+    console.log(JSON.stringify(response, null, 2));
+
   })
   .catch(err => {
-    console.error(err);
+    console.error(JSON.stringify(err, null, 2));
   });
