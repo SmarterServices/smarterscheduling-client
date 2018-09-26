@@ -29,6 +29,8 @@ const commonSchemaForList = joi
       .description('Sort order')
   });
 
+const allowUnknownAndStrip = {allowUnknown: true, stripUnknown: true};
+
 const schema = {
   credential: joi
     .object({
@@ -40,32 +42,31 @@ const schema = {
     .required()
     .description('credential schema'),
   listLocation: joi
-    .object()
-    .keys({
-      params: joi
-        .object({
-          accountSid: joi
-            .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'accountSid')
-            .required()
-            .description('Account Sid')
-        })
-        .required(),
-      query: commonSchemaForList
-        .keys({
-          externalId: joi
-            .string()
-            .description('External id to filter the data by')
-        })
-    })
-    .required(),
+    .object({
+    params: joi
+      .object({
+        accountSid: joi
+          .string()
+          .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
+          .required()
+          .description('Account Sid')
+      })
+      .required(),
+    query: commonSchemaForList
+      .keys({
+        externalId: joi
+          .string()
+          .description('External id to filter the data by')
+      })
+  })
+    .options(allowUnknownAndStrip),
   addLocation: joi
     .object({
       params: joi
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'accountSid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid')
         })
@@ -91,7 +92,7 @@ const schema = {
         .required()
         .description('Location payload')
     })
-    .required()
+    .options(allowUnknownAndStrip)
 };
 
 module.exports = schema;
