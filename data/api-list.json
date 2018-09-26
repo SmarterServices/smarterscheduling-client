@@ -1,0 +1,10 @@
+{
+  "listLocation": {
+    "endpoint": "/v1/accounts/{accountSid}/locations",
+    "method": "GET"
+  },
+  "addLocation": {
+    "endpoint": "/v1/accounts/{accountSid}/locations",
+    "method": "POST"
+  }
+}

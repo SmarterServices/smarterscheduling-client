@@ -1,0 +1,377 @@
+{
+  "config": {
+    "host": "https://demo.proctoru.com/api",
+    "authorizationToken": "123456456456456"
+  },
+  "getTimeZoneList": {
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-14T10:19:08Z",
+        "response_code": 1,
+        "message": "",
+        "data": [
+          {
+            "TimeZoneNo": 42,
+            "GMTOffset": -12,
+            "Id": "Dateline Standard Time",
+            "DisplayName": "(UTC-12:00) International Date Line West",
+            "Description": "Dateline Standard Time",
+            "SortOrder": 100,
+            "LocalTime": "10:19 PM",
+            "DST": false
+          },
+          {
+            "TimeZoneNo": 43,
+            "GMTOffset": -11,
+            "Id": "UTC-11",
+            "DisplayName": "(UTC-11:00) Coordinated Universal Time-11",
+            "Description": "UTC-11",
+            "SortOrder": 100,
+            "LocalTime": "11:19 PM",
+            "DST": false
+          }
+        ]
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      }
+    }
+  },
+  "getStudentReservationList": {
+    "params": {
+      "studentId": "269"
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-15T07:23:49Z",
+        "response_code": 1,
+        "message": "",
+        "data": [
+          {
+            "reservation_no": 907886102,
+            "reservation_id": "932",
+            "exam_id": null,
+            "description": "Lightsaber Swordsmanship",
+            "courseno": null,
+            "instructor": null,
+            "start_date": "2018-05-28T14:00:00Z",
+            "test": "Lightsaber Swordsmanship",
+            "escalated": false
+          }
+        ]
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "studentNotFoundError": {
+        "time_sent": "2018-05-15T08:17:24.364Z",
+        "response_code": 2,
+        "message": "Student Not found : Error count 0 of 50",
+        "data": null
+      }
+    }
+  },
+  "getScheduleInfoAvailableTimesList": {
+    "params": {
+      "studentId": "269",
+      "timeZoneId": "42",
+      "examId": "940",
+      "isadhoc": "Y",
+      "startDate": "2018-08-29T00:00:00Z",
+      "takeitnow": "N",
+      "duration": 60
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-15T07:23:49Z",
+        "response_code": 1,
+        "message": "",
+        "data": [
+          {
+            "start_date": "2018-08-29T00:00:00Z",
+            "local_start_date": "2018-08-29T00:00:00Z",
+            "fee": 30,
+            "fee_premium": 0,
+            "fee_discount": 0
+          },
+          {
+            "start_date": "2018-08-29T00:15:00Z",
+            "local_start_date": "2018-08-29T00:15:00Z",
+            "fee": 30,
+            "fee_premium": 0,
+            "fee_discount": 0
+          }
+        ]
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "studentNotFoundError": {
+        "time_sent": "2018-05-15T08:17:24.364Z",
+        "response_code": 2,
+        "message": "Student Not found : Error count 0 of 50",
+        "data": null
+      },
+      "examNotFoundError": {
+        "time_sent": "2018-05-15T08:17:24.364Z",
+        "response_code": 2,
+        "message": "Exam Not found : Error count 0 of 50",
+        "data": null
+      }
+    }
+  },
+  "beginReservation": {
+    "params": {
+      "studentId": "269",
+      "reservationId": "932"
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-15T07:23:49Z",
+        "response_code": 1,
+        "message": "",
+        "data": [
+          {
+            "reservation_no": 907886102,
+            "reservation_id": "932",
+            "exam_id": null,
+            "description": "Lightsaber Swordsmanship",
+            "courseno": null,
+            "instructor": null,
+            "start_date": "2018-05-28T14:00:00Z",
+            "test": "Lightsaber Swordsmanship",
+            "escalated": false
+          }
+        ]
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "studentNotFoundError": {
+        "time_sent": "2018-05-15T08:17:24.364Z",
+        "response_code": 2,
+        "message": "Student Not found : Error count 0 of 50",
+        "data": null
+      },
+      "reservationInFutureError": {
+        "time_sent": "2018-05-16T05:48:41.132Z",
+        "response_code": 2,
+        "message": "Reservation is in the future : Error count 0 of 50",
+        "data": null
+      },
+      "reservationNotFoundError": {
+        "time_sent": "2018-05-17T10:37:47.492Z",
+        "response_code": 2,
+        "message": "Reservation Not found : Error count 0 of 50",
+        "data": null
+      }
+    }
+  },
+  "addAdHocProcess": {
+    "params": {
+      "studentId": "269",
+      "lastName": "Skywalker",
+      "firstName": "Luke",
+      "address1": "5858 Lucas Valley Rd",
+      "city": "Nicasio",
+      "state": "CA",
+      "country": "US",
+      "zipcode": 94946,
+      "phone1": 926763264,
+      "email": "lucas_skywalker@starwars.com",
+      "takeitnow": "N",
+      "timeZoneId": "Tonga Standard Time",
+      "description": "Lightsaber Swordsmanship",
+      "duration": 60,
+      "startDate": "2018-08-16T11:00:00Z",
+      "reservationId": "9321"
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-16T10:06:48Z",
+        "response_code": 1,
+        "message": "",
+        "data": {
+          "balance": 0.0,
+          "reservation_id": "932",
+          "reservation_no": 907886515,
+          "url": "https://demo.proctoru.com/students/reservations?login_token=BAhpBHpSJjc%3D--d05662171c844793a57244e9c4a6d9eb2837d2b3&reservation_no=907886515&return_to=https%3A%2F%2Fdemo.proctoru.com%2Fstudents%2Freservations"
+        }
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "studentNotFoundError": {
+        "time_sent": "2018-05-15T08:17:24.364Z",
+        "response_code": 2,
+        "message": "Student Not found : Error count 0 of 50",
+        "data": null
+      },
+      "reservationIdExistError": {
+        "time_sent": "2018-05-16T10:21:13.781Z",
+        "response_code": 2,
+        "message": "reservation_id_EXIST_FOR_THIS_INSTITUTION : Error count 0 of 50 : Error count 0 of 50",
+        "data": null
+      },
+      "overlapError": {
+        "time_sent": "2018-05-16T10:21:36.910Z",
+        "response_code": 2,
+        "message": "OVERLAP : Error count 1 of 50 : Error count 1 of 50",
+        "data": null
+      },
+      "timeZoneNotFoundError": {
+        "time_sent": "2018-05-16T09:55:00Z",
+        "response_code": 2,
+        "message": "TimeZone not found. : Error count 2 of 50",
+        "data": null
+      },
+      "startDateInPastError": {
+        "time_sent": "2018-05-16T07:55:04.858Z",
+        "response_code": 2,
+        "message": "start_date in the past : Error count 0 of 50",
+        "data": null
+      }
+    }
+  },
+  "removeReservation": {
+    "params": {
+      "studentId": "269",
+      "reservationNo": 907886102
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-16T11:45:48Z",
+        "response_code": 1,
+        "message": "",
+        "data":
+        {
+          "onaccount": "30.00"
+        }
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "studentNotFoundError": {
+        "time_sent": "2018-05-15T08:17:24.364Z",
+        "response_code": 2,
+        "message": "Student Not found : Error count 0 of 50",
+        "data": null
+      },
+      "reservationNotFoundError": {
+        "time_sent": "2018-05-16T11:43:55.348Z",
+        "response_code": 2,
+        "message": "Reservation Not found : Error count 0 of 50",
+        "data": null
+      },
+      "reservationCancelledError": {
+        "time_sent": "2018-05-16T12:59:00.075Z",
+        "response_code": 2,
+        "message": "Reservation Cancelled. : Error count 0 of 50",
+        "data": null }
+    }
+  },
+  "moveReservation": {
+    "params": {
+      "reservationNo": 907886102,
+      "startDate": "2019-08-29T00:00:00Z",
+      "reservationId": "932"
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-05-16T13:00:44Z",
+        "response_code": 1,
+        "message": "",
+        "data":
+        {
+          "balance": 30,
+          "reservation_id": "932",
+          "reservation_no": 907886517,
+          "url": "https://demo.proctoru.com/students/order?login_token=BAhpBHpSJjc%3D--d05662171c844793a57244e9c4a6d9eb2837d2b3&reservation_no=OTA3ODg2NTE3%0A"
+        }
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "reservationCancelledError": {
+        "time_sent": "2018-05-16T12:59:00.075Z",
+        "response_code": 2,
+        "message": "Reservation Cancelled. : Error count 0 of 50",
+        "data": null
+      },
+      "reservationNotForInstitutionError": {
+        "time_sent": "2018-05-16T10:21:36.910Z",
+        "response_code": 2,
+        "message": "RESERVATION_NOT_FOR_THIS_INSTITUTION : Error count 1 of 50 : Error count 1 of 50",
+        "data": null
+      }
+    }
+  },
+  "autoLogin": {
+    "params": {
+      "studentId": "269",
+      "email": "lucas_skywalker@starwars.com",
+      "lastName": "Skywalker",
+      "timeZoneId": "Central Standard Time",
+      "firstName": "Luke"
+    },
+    "response": {
+      "valid": {
+        "time_sent": "2018-07-18T13:07:45Z",
+        "response_code": 1,
+        "message": "",
+        "data": {
+          "url": "https://demo.proctoru.com/session/auto_login?token=BAhpBHpSJjc%3D--d05662171c844793a57244e9c4a6d9eb2837d2b3"
+        }
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      },
+      "studentNotFoundError": {
+        "time_sent": "2018-07-18T13:48:20Z",
+        "response_code": 2,
+        "message": "Student Not Found : Error count 0 of 50",
+        "data": null
+      }
+    }
+  },
+  "getOAuthToken": {
+    "response": {
+      "valid": {
+        "time_sent": "2018-07-18T13:07:45Z",
+        "response_code": 1,
+        "message": "",
+        "oauth_token": "5678"
+      },
+      "timeOutError": {
+        "time_sent": "2018-05-14T06:00:55.043Z",
+        "response_code": 2,
+        "message": "stale request",
+        "data": null
+      }
+    }
+  }
+}
