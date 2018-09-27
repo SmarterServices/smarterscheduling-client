@@ -113,7 +113,53 @@ const schema = {
         .required()
         .description('Location payload')
     })
-    .description('Add Location schema')
+    .description('Add Location schema'),
+  addCalendar: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          locationSid: joi
+            .string()
+            .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
+            .required()
+            .description('Location Sid')})
+        .required()
+        .description('Calendar params'),
+      payload:joi.object({
+        title: joi
+          .string()
+          .max(255)
+          .required()
+          .description('Title'),
+        numberOfSeats: joi
+          .number()
+          .integer()
+          .positive()
+          .description('Number of seats'),
+        interval: joi
+          .number()
+          .integer()
+          .default(10)
+          .min(0)
+          .max(999)
+          .description('Interval'),
+        endBuffer: joi
+          .number()
+          .integer()
+          .default(0)
+          .min(0)
+          .max(999)
+          .description('End buffer'),
+      })
+        .required()
+        .description('Calendar payload')
+    })
+    .description('Add Calendar schema')
 };
 
 module.exports = schema;

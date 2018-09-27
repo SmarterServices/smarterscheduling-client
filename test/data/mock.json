@@ -111,5 +111,35 @@
         "status": 404
       }
     }
+  },
+  "addCalendar": {
+    "parameters": {
+      "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096c",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+      "title": "MA Calendar",
+      "interval": 10,
+      "endBuffer": 0,
+      "numberOfSeats": 5
+    },
+    "response": {
+      "valid": {
+        "sid": "CL3e1a5ab28e23496898415721238cc560",
+        "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "title": "MA Calendar",
+        "numberOfSeats": 5,
+        "schedule": {
+          "sid": "SCb6d8f752815a40788502652bc9263305",
+          "interval": 10,
+          "endBuffer": 0
+        },
+        "createdDate": "2018-09-27T09:04:32.775Z",
+        "editDate": "2018-09-27T09:04:32.776Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
   }
 }

@@ -14,5 +14,9 @@
   "addLocation": {
     "endpoint": "/v1/accounts/{accountSid}/locations",
     "method": "POST"
+  },
+  "addCalendar": {
+    "endpoint": "/v1/accounts/{accountSid}/locations/{locationSid}/calendars",
+    "method": "POST"
   }
 }

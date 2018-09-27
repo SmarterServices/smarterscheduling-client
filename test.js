@@ -6,33 +6,51 @@ const credential = {
 };
 const client = new Client();
 
+const accountSid = 'SAb81222e1f38c4a9695269b76c9f20466';
+const locationSid = 'SLc74e37c2dbf147698dfd889a6e3d9200';
+const calendarSid = 'CL3e1a5ab28e23496898415721238cc560';
+const scheduleSid = 'SCb6d8f752815a40788502652bc9263305';
+
+const queryParams = {
+  limit: 1,
+  offset: 1
+};
+
 const listAccount = {
   limit: 1,
   offset: 1
 };
 
 const addAccount = {
-  title: 'Account of Test',
+  title: 'Account of MA',
   externalId: '111'
 };
 
 const listLocation = {
-  accountSid: 'PA3cacf5fc6e024b39823a3f31f7eb096b',
-  limit: 1,
-  offset: 1
+  accountSid
 };
 
 const addLocation = {
-  accountSid: 'SA3cacf5fc6e024b39823a3f31f7eb096b',
+  accountSid,
   title: 'MA Location',
   seatManagement: 'basic'
 };
 
+const addCalendar = {
+  accountSid,
+  locationSid,
+  title: 'MA Calendar',
+  interval: 10,
+  endBuffer: 0,
+  numberOfSeats: 5
+};
+
 client
-  .addAccount(Object.assign(credential, addAccount))
-  // .listAccount(Object.assign(credential, listAccount))
-  // .listLocation(Object.assign(credential, listLocation))
-  // .addLocation(Object.assign(credential, addLocation))
+  // .addAccount(Object.assign(credential, addAccount))
+// .listAccount(Object.assign(credential, listAccount, queryParams))
+//   .listLocation(Object.assign(credential, listLocation, queryParams))
+//   .addLocation(Object.assign(credential, addLocation))
+  .addCalendar(Object.assign(credential, addCalendar))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 

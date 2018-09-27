@@ -148,4 +148,34 @@ describe('Client', function testClient() {
 
   });
 
+  describe('Add Calendar', function testClient() {
+    const apiName = 'addCalendar';
+
+    before('Create Mocker', function () {
+      schedulingMock.postEndpointMocker(apiName);
+    });
+
+    it('Should Add Calendar', () => {
+      return client
+        .addCalendar(Object.assign(config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Add Calendar', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.postEndpointMocker(apiName, 'fail');
+
+      return client
+        .addCalendar(Object.assign(config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
 });
