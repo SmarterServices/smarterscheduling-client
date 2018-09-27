@@ -1,0 +1,500 @@
+{
+  "config": {
+    "host": "http://localhost:8013"
+  },
+  "listAccount": {
+    "parameters": {
+      "limit": 1,
+      "offset": 1
+    },
+    "response": {
+      "valid": {
+        "total": 1,
+        "first": "http://localhost:8013/v1/accounts?sortKeys=createdDate&sortOrder=ASC",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 1,
+        "offset": 0,
+        "results": [
+          {
+            "sid": "SA3df1b65ab9184fe58353d7bd6398df68",
+            "title": "Test1",
+            "externalId": "123",
+            "createdDate": "2018-09-16T13:49:30.000Z",
+            "editDate": "2018-09-16T14:07:37.000Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "addAccount": {
+    "parameters": {
+      "title": "Account of Test",
+      "externalId": "111"
+    },
+    "response": {
+      "valid": {
+        "sid": "SA3df1b65ab9184fe58353d7bd6398df68",
+        "title": "Test1",
+        "externalId": "123",
+        "createdDate": "2018-09-16T13:49:30.000Z",
+        "editDate": "2018-09-16T14:07:37.000Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "listLocation": {
+    "parameters": {
+      "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",
+      "limit": 1,
+      "offset": 1
+    },
+    "response": {
+      "valid": {
+        "total": 3,
+        "first": "http://localhost:8013/v1/accounts/PA3cacf5fc6e024b39823a3f31f7eb096b/locations?limit=1",
+        "next": "http://localhost:8013/v1/accounts/PA3cacf5fc6e024b39823a3f31f7eb096b/locations?limit=1&offset=2",
+        "prev": "http://localhost:8013/v1/accounts/PA3cacf5fc6e024b39823a3f31f7eb096b/locations?limit=1&offset=0",
+        "last": "http://localhost:8013/v1/accounts/PA3cacf5fc6e024b39823a3f31f7eb096b/locations?limit=1&offset=2",
+        "count": 1,
+        "offset": 1,
+        "results": [
+          {
+            "sid": "SL3cacf5fc6e024b39823a3f31f7eb096a",
+            "title": "string",
+            "externalId": "string",
+            "schedulingAccountSid": "PA3cacf5fc6e024b39823a3f31f7eb096b",
+            "seatManagement": "basic",
+            "createdDate": "2018-09-26T11:34:38.896Z",
+            "lastModifiedDate": "2018-09-26T11:34:38.896Z",
+            "systemModstamp": "2018-09-26T11:34:38.896Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "addLocation": {
+    "parameters": {
+      "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",
+      "title": "Test Location",
+      "seatManagement": "basic"
+    },
+    "response": {
+      "valid": {
+        "sid": "SL166b8087d8634233be3d31fbc00166fd",
+        "title": "Test Location",
+        "externalId": null,
+        "schedulingAccountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",
+        "seatManagement": "basic",
+        "createdDate": "2018-09-27T05:59:18.414Z",
+        "lastModifiedDate": "2018-09-27T05:59:18.415Z",
+        "systemModstamp": "2018-09-27T05:59:18.415Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "addCalendar": {
+    "parameters": {
+      "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096c",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+      "title": "MA Calendar",
+      "interval": 10,
+      "endBuffer": 0,
+      "numberOfSeats": 5
+    },
+    "response": {
+      "valid": {
+        "sid": "CL3e1a5ab28e23496898415721238cc560",
+        "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "title": "MA Calendar",
+        "numberOfSeats": 5,
+        "schedule": {
+          "sid": "SCb6d8f752815a40788502652bc9263305",
+          "interval": 10,
+          "endBuffer": 0
+        },
+        "createdDate": "2018-09-27T09:04:32.775Z",
+        "editDate": "2018-09-27T09:04:32.776Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "listCalendar": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+      "limit": 1,
+      "offset": 1
+    },
+    "response": {
+      "valid": {
+        "total": 1,
+        "first": "http://localhost:8013/v1/accounts/SAb81222e1f38c4a9695269b76c9f20466/locations/SLc74e37c2dbf147698dfd889a6e3d9200/calendars?sortKeys=createdDate&sortOrder=ASC",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 1,
+        "offset": 0,
+        "results": [
+          {
+            "sid": "CL3e1a5ab28e23496898415721238cc560",
+            "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+            "title": "MA Calendar",
+            "numberOfSeats": 5,
+            "schedule": {
+              "sid": "SCb6d8f752815a40788502652bc9263305",
+              "interval": 10,
+              "endBuffer": 0
+            },
+            "createdDate": "2018-09-27T09:04:32.775Z",
+            "editDate": "2018-09-27T09:04:32.776Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "getCalendar": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+      "calendarSid": "CL3e1a5ab28e23496898415721238cc560"
+    },
+    "response": {
+      "valid": {
+        "sid": "CL3e1a5ab28e23496898415721238cc560",
+        "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "title": "MA Calendar",
+        "numberOfSeats": 5,
+        "schedule": {
+          "sid": "SCb6d8f752815a40788502652bc9263305",
+          "interval": 10,
+          "endBuffer": 0
+        },
+        "createdDate": "2018-09-27T09:04:32.775Z",
+        "editDate": "2018-09-27T09:04:32.776Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "addExclusion": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+      "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+      "title": "Test Title",
+      "startDate": "2018-09-18",
+      "dayOfWeek": 2,
+      "startTime": "13:49",
+      "endTime": "22:49",
+      "recurring": "weekly"
+    },
+    "response": {
+      "valid": {
+        "sid": "AE2f9e6d1f0dab46f7a7edeb0e2d9cb27e",
+        "title": "Test Title",
+        "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+        "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+        "startDate": "2018-09-18",
+        "endDate": null,
+        "dayOfWeek": 2,
+        "startTime": "13:49:00",
+        "endTime": "22:49:00",
+        "recurring": "weekly",
+        "externalSystem": null,
+        "externalId": null,
+        "createdDate": "2018-09-27T09:33:49.104Z",
+        "editDate": "2018-09-27T09:33:49.114Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "listExclusion": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200"
+    },
+    "response": {
+      "valid": {
+        "total": 1,
+        "first": "http://localhost:8013/v1/accounts/SAb81222e1f38c4a9695269b76c9f20466/exclusions?locationSid=SLc74e37c2dbf147698dfd889a6e3d9200&sortKeys=createdDate&sortOrder=ASC",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 1,
+        "offset": 0,
+        "results": [
+          {
+            "sid": "AE2f9e6d1f0dab46f7a7edeb0e2d9cb27e",
+            "title": "Test Title",
+            "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+            "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+            "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+            "startDate": "2018-09-18",
+            "endDate": null,
+            "dayOfWeek": 2,
+            "startTime": "13:49:00",
+            "endTime": "22:49:00",
+            "recurring": "weekly",
+            "externalSystem": null,
+            "externalId": null,
+            "createdDate": "2018-09-27T09:33:49.104Z",
+            "editDate": "2018-09-27T09:33:49.114Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "getExclusion": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "exclusionSid": "AE2f9e6d1f0dab46f7a7edeb0e2d9cb27e"
+    },
+    "response": {
+      "valid": {
+        "sid": "AE2f9e6d1f0dab46f7a7edeb0e2d9cb27e",
+        "title": "Test Title",
+        "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+        "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+        "startDate": "2018-09-18",
+        "endDate": null,
+        "dayOfWeek": 2,
+        "startTime": "13:49:00",
+        "endTime": "22:49:00",
+        "recurring": "weekly",
+        "externalSystem": null,
+        "externalId": null,
+        "createdDate": "2018-09-27T09:33:49.104Z",
+        "editDate": "2018-09-27T09:33:49.114Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "updateExclusion": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "exclusionSid": "AE82320ed5e13449a39fc0351fa1f32da1",
+      "title": "Test Title",
+      "startDate": "2018-09-18",
+      "dayOfWeek": 2,
+      "startTime": "13:49",
+      "endTime": "22:49",
+      "recurring": "weekly"
+    },
+    "response": {
+      "valid": {
+        "sid": "AE82320ed5e13449a39fc0351fa1f32da1",
+        "title": "Test Title",
+        "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+        "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+        "startDate": "2018-09-18",
+        "endDate": null,
+        "dayOfWeek": 2,
+        "startTime": "13:49:00",
+        "endTime": "22:49:00",
+        "recurring": "weekly",
+        "externalSystem": null,
+        "externalId": null,
+        "createdDate": "2018-09-27T11:45:25.987Z",
+        "editDate": "2018-09-27T11:51:17.640Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "deleteExclusion": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "exclusionSid": "AE2f9e6d1f0dab46f7a7edeb0e2d9cb27e"
+    },
+    "response": {
+      "valid": {
+        "success": "OK"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "listAvailability": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "scheduleSid": "SCb6d8f752815a40788502652bc9263305"
+    },
+    "response": {
+      "valid": {
+        "total": 1,
+        "first": "http://localhost:8013/v1/accounts/SAb81222e1f38c4a9695269b76c9f20466/schedules/SCb6d8f752815a40788502652bc9263305/availability?sortKeys=createdDate&sortOrder=ASC",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 1,
+        "offset": 0,
+        "results": [
+          {
+            "sid": "AVf52969438124483aa827eb021e66e8c0",
+            "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+            "startDate": "2018-09-26",
+            "endDate": null,
+            "dayOfWeek": 0,
+            "startTime": "19:00:00",
+            "endTime": "20:00:00",
+            "recurring": "weekly",
+            "createdDate": "2018-09-27T12:45:05.497Z",
+            "editDate": "2018-09-27T12:45:05.497Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "listAppointmentAvailability": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "startDateTime": "2018-09-24T06:13:30.595Z",
+      "endDateTime": "2018-09-24T06:13:30.595Z",
+      "duration": 45,
+      "calendarSid": "CL3e1a5ab28e23496898415721238cc560"
+    },
+    "response": {
+      "valid": {
+        "results": [
+          {
+            "startDateTime": "2018-09-22T22:00:00.000Z",
+            "endDateTime": "2018-09-22T23:00:00.000Z",
+            "duration": 45,
+            "seatCount": 2
+          },
+          {
+            "startDateTime": "2018-09-22T22:15:00.000Z",
+            "endDateTime": "2018-09-22T23:15:00.000Z",
+            "duration": 45,
+            "seatCount": 2
+          },
+          {
+            "startDateTime": "2018-09-22T22:30:00.000Z",
+            "endDateTime": "2018-09-22T23:30:00.000Z",
+            "duration": 45,
+            "seatCount": 2
+          },
+          {
+            "startDateTime": "2018-09-22T22:45:00.000Z",
+            "endDateTime": "2018-09-22T23:45:00.000Z",
+            "duration": 45,
+            "seatCount": 2
+          },
+          {
+            "startDateTime": "2018-09-22T23:00:00.000Z",
+            "endDateTime": "2018-09-23T00:00:00.000Z",
+            "duration": 45,
+            "seatCount": 2
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "listCalendarAvailability": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "calendarSid": "CL3e1a5ab28e23496898415721238cc560",
+      "startDate": "2018-09-26",
+      "endDate": "2018-10-26"
+    },
+    "response": {
+      "valid": {
+        "total": 0,
+        "first": "http://localhost:8013/v1/accounts/SAb81222e1f38c4a9695269b76c9f20466/calendars/CL3e1a5ab28e23496898415721238cc560/availability?startDate=2018-09-26&endDate=2018-10-26",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 0,
+        "offset": 0,
+        "results": {
+          "2018-09-26": [],
+          "2018-09-27": [],
+          "2018-09-28": [],
+          "2018-09-29": [],
+          "2018-09-30": [
+            {
+              "sid": "AVf52969438124483aa827eb021e66e8c0",
+              "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+              "name": null,
+              "startDate": "2018-09-26",
+              "endDate": null,
+              "dayOfWeek": 0,
+              "startTime": "19:00:00",
+              "endTime": "20:00:00",
+              "recurring": "weekly"
+            }
+          ]
+        }
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  }
+}
