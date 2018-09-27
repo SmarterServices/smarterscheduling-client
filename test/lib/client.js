@@ -37,7 +37,7 @@ describe('Client', function testClient() {
 
     it('Should Add Account', () => {
       return client
-        .addAccount(Object.assign(config, mockData[apiName].parameters))
+        .addAccount(Object.assign({}, config, mockData[apiName].parameters))
         .then((response) => {
           expect(response).to.eql(mockData[apiName].response.valid);
         });
@@ -49,7 +49,7 @@ describe('Client', function testClient() {
       schedulingMock.postEndpointMocker(apiName, 'fail');
 
       return client
-        .addAccount(Object.assign(config, mockData[apiName].parameters))
+        .addAccount(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);
@@ -67,7 +67,7 @@ describe('Client', function testClient() {
 
     it('Should List Account', () => {
       return client
-        .listAccount(Object.assign(config, mockData[apiName].parameters))
+        .listAccount(Object.assign({}, config, mockData[apiName].parameters))
         .then((response) => {
           expect(response).to.eql(mockData[apiName].response.valid);
         });
@@ -79,7 +79,7 @@ describe('Client', function testClient() {
       schedulingMock.getEndpointMocker(apiName, 'fail');
 
       return client
-        .listAccount(Object.assign(config, mockData[apiName].parameters))
+        .listAccount(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);
@@ -97,7 +97,7 @@ describe('Client', function testClient() {
 
     it('Should list location', () => {
       return client
-        .listLocation(Object.assign(config, mockData[apiName].parameters))
+        .listLocation(Object.assign({}, config, mockData[apiName].parameters))
         .then((response) => {
           expect(response).to.eql(mockData[apiName].response.valid);
         });
@@ -109,7 +109,7 @@ describe('Client', function testClient() {
       schedulingMock.getEndpointMocker('listLocation', 'fail');
 
       return client
-        .listLocation(Object.assign(config, mockData[apiName].parameters))
+        .listLocation(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);
@@ -127,7 +127,7 @@ describe('Client', function testClient() {
 
     it('Should add location', () => {
       return client
-        .addLocation(Object.assign(config, mockData[apiName].parameters))
+        .addLocation(Object.assign({}, config, mockData[apiName].parameters))
         .then((response) => {
           expect(response).to.eql(mockData[apiName].response.valid);
         });
@@ -139,7 +139,7 @@ describe('Client', function testClient() {
       schedulingMock.getEndpointMocker('addLocation', 'fail');
 
       return client
-        .listLocation(Object.assign(config, mockData[apiName].parameters))
+        .listLocation(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);
@@ -157,7 +157,7 @@ describe('Client', function testClient() {
 
     it('Should Add Calendar', () => {
       return client
-        .addCalendar(Object.assign(config, mockData[apiName].parameters))
+        .addCalendar(Object.assign({}, config, mockData[apiName].parameters))
         .then((response) => {
           expect(response).to.eql(mockData[apiName].response.valid);
         });
@@ -169,7 +169,157 @@ describe('Client', function testClient() {
       schedulingMock.postEndpointMocker(apiName, 'fail');
 
       return client
-        .addCalendar(Object.assign(config, mockData[apiName].parameters))
+        .addCalendar(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('List Calendar', function testClient() {
+    const apiName = 'listCalendar';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Calendar', () => {
+      return client
+        .listCalendar(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Calendar', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listCalendar(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('Get Calendar', function testClient() {
+    const apiName = 'getCalendar';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should Get Calendar', () => {
+      return client
+        .getCalendar(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Get Calendar', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .getCalendar(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('Add Exclusion', function testClient() {
+    const apiName = 'addExclusion';
+
+    before('Create Mocker', function () {
+      schedulingMock.postEndpointMocker(apiName);
+    });
+
+    it('Should Add Exclusion', () => {
+      return client
+        .addExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Add Exclusion', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.postEndpointMocker(apiName, 'fail');
+
+      return client
+        .addExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('List Exclusion', function testClient() {
+    const apiName = 'listExclusion';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Exclusion', () => {
+      return client
+        .listExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Exclusion', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('Get Exclusion', function testClient() {
+    const apiName = 'getExclusion';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should Get Exclusion', () => {
+      return client
+        .getExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Get Exclusion', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .getExclusion(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);

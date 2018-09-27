@@ -18,5 +18,25 @@
   "addCalendar": {
     "endpoint": "/v1/accounts/{accountSid}/locations/{locationSid}/calendars",
     "method": "POST"
+  },
+  "listCalendar": {
+    "endpoint": "/v1/accounts/{accountSid}/locations/{locationSid}/calendars",
+    "method": "GET"
+  },
+  "getCalendar": {
+    "endpoint": "/v1/accounts/{accountSid}/locations/{locationSid}/calendars/{calendarSid}",
+    "method": "GET"
+  },
+  "addExclusion": {
+    "endpoint": "/v1/accounts/{accountSid}/exclusions",
+    "method": "POST"
+  },
+  "listExclusion": {
+    "endpoint": "/v1/accounts/{accountSid}/exclusions",
+    "method": "GET"
+  },
+  "getExclusion": {
+    "endpoint": "/v1/accounts/{accountSid}/exclusions/{exclusionSid}",
+    "method": "GET"
   }
 }

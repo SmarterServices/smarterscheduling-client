@@ -127,10 +127,11 @@ const schema = {
             .string()
             .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
             .required()
-            .description('Location Sid')})
+            .description('Location Sid')
+        })
         .required()
         .description('Calendar params'),
-      payload:joi.object({
+      payload: joi.object({
         title: joi
           .string()
           .max(255)
@@ -159,7 +160,160 @@ const schema = {
         .required()
         .description('Calendar payload')
     })
-    .description('Add Calendar schema')
+    .description('Add Calendar schema'),
+  listCalendar: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          locationSid: joi
+            .string()
+            .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
+            .required()
+            .description('Location Sid')
+        }),
+      query: commonSchemaForList
+    })
+    .description('List Calendar schema'),
+  getCalendar: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          locationSid: joi
+            .string()
+            .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
+            .required()
+            .description('Location Sid'),
+          calendarSid: joi
+            .string()
+            .regex(/^CL[a-f0-9]{32}$/, 'Calendar Sid')
+            .required()
+            .description('Calendar Sid')
+        })
+    })
+    .description('Get Calendar schema'),
+  addExclusion: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid')
+        }),
+      payload: joi.object({
+        locationSid: joi
+          .string()
+          .regex(/^SL[a-f0-9]{32}$/)
+          .allow(null)
+          .description('Scheduling Location Sid'),
+        scheduleSid: joi
+          .string()
+          .regex(/^SC[a-f0-9]{32}$/)
+          .allow(null)
+          .description('Schedule Sid'),
+        title: joi
+          .string()
+          .required()
+          .description('Title'),
+        startDate: joi
+          .date()
+          .required()
+          .description('Start Date'),
+        endDate: joi
+          .date()
+          .min(joi.ref('startDate'))
+          .allow(null)
+          .description('End Date'),
+        dayOfWeek: joi
+          .number()
+          .integer()
+          .required()
+          .min(0)
+          .max(6)
+          .description('Day Of Week'),
+        startTime: joi
+          .date()
+          .format('HH:mm')
+          .required()
+          .description('Start Time'),
+        endTime: joi
+          .date()
+          .format('HH:mm')
+          .min(joi.ref('startTime'))
+          .required()
+          .description('End Time'),
+        recurring: joi
+          .string()
+          .valid('weekly')
+          .allow(null)
+          .description('Recurring'),
+        externalSystem: joi
+          .string()
+          .max(255)
+          .allow(null)
+          .description('External System'),
+        externalId: joi
+          .string()
+          .max(255)
+          .allow(null)
+          .description('External ID')
+      })
+        .raw()//keeping the startTime and endTime as input format
+        .required()
+        .description('Exclusion payload')
+    })
+    .description('Add Exclusion schema'),
+  listExclusion: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid')
+        }),
+      query: commonSchemaForList
+        .keys({
+          locationSid: joi
+            .string()
+            .regex(/^SL[a-f0-9]{32}$/)
+            .description('Scheduling Location Sid'),
+          scheduleSid: joi
+            .string()
+            .regex(/^SC[a-f0-9]{32}$/)
+            .description('Schedule Sid')
+        })
+    })
+    .description('List Exclusion schema'),
+  getExclusion: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          exclusionSid: joi
+            .string()
+            .regex(/^AE[a-f0-9]{32}$/, 'Exclusion Sid')
+            .required()
+            .description('Exclusion Sid')
+        })
+    })
+    .description('Get Exclusion schema')
 };
 
 module.exports = schema;
