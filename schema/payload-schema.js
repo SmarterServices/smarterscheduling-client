@@ -3,9 +3,6 @@
 const joi = require('joi');
 const utils = require('./../lib/helpers/utils');
 
-const allowUnknownAndStrip = {allowUnknown: true, stripUnknown: true};
-const skipAllowUnknown = {allowUnknown: false, stripUnknown: false};
-
 const commonSchemaForList = joi
   .object()
   .keys({
@@ -32,7 +29,6 @@ const commonSchemaForList = joi
       .valid('ASC', 'DESC')
       .description('Sort order')
   })
-  .options(skipAllowUnknown)
   .description('List query');
 
 const schema = {
@@ -49,7 +45,6 @@ const schema = {
     .object({
       query: commonSchemaForList
     })
-    .options(allowUnknownAndStrip)
     .description('List account schema'),
   addAccount: joi
     .object({
@@ -64,11 +59,9 @@ const schema = {
           .max(255)
           .description('External ID')
       })
-        .options(skipAllowUnknown)
         .required()
         .description('Account payload')
     })
-    .options(allowUnknownAndStrip)
     .description('Add Account schema'),
   listLocation: joi
     .object({
@@ -80,7 +73,6 @@ const schema = {
             .required()
             .description('Account Sid')
         })
-        .options(skipAllowUnknown)
         .required(),
       query: commonSchemaForList
         .keys({
@@ -88,8 +80,7 @@ const schema = {
             .string()
             .description('External id to filter the data by')
         })
-    })
-    .options(allowUnknownAndStrip),
+    }),
   addLocation: joi
     .object({
       params: joi
@@ -101,7 +92,6 @@ const schema = {
             .description('Account Sid')
         })
         .required()
-        .options(skipAllowUnknown)
         .description('Location params'),
       payload: joi.object({
         title: joi
@@ -121,11 +111,9 @@ const schema = {
           .description('Seat Management')
       })
         .required()
-        .options(skipAllowUnknown)
         .description('Location payload')
     })
     .description('Add Location schema')
-    .options(allowUnknownAndStrip)
 };
 
 module.exports = schema;
