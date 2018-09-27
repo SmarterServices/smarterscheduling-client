@@ -2,6 +2,10 @@
 
 const joi = require('joi');
 const utils = require('./../lib/helpers/utils');
+
+const allowUnknownAndStrip = {allowUnknown: true, stripUnknown: true};
+const skipAllowUnknown = {allowUnknown: false, stripUnknown: false};
+
 const commonSchemaForList = joi
   .object()
   .keys({
@@ -27,10 +31,8 @@ const commonSchemaForList = joi
       .string()
       .valid('ASC', 'DESC')
       .description('Sort order')
-  });
-
-const allowUnknownAndStrip = {allowUnknown: true, stripUnknown: true};
-const skipAllowUnknown = {allowUnknown: false, stripUnknown: false};
+  })
+  .options(skipAllowUnknown);
 
 const schema = {
   credential: joi
@@ -42,6 +44,12 @@ const schema = {
     })
     .required()
     .description('credential schema'),
+  listAccount: joi
+    .object({
+      query: commonSchemaForList
+    })
+    .options(allowUnknownAndStrip)
+    .description('List account schema'),
   listLocation: joi
     .object({
     params: joi
@@ -60,7 +68,6 @@ const schema = {
           .string()
           .description('External id to filter the data by')
       })
-      .options(skipAllowUnknown)
   })
     .options(allowUnknownAndStrip),
   addLocation: joi

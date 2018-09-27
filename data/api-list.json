@@ -1,4 +1,8 @@
 {
+  "listAccount": {
+    "endpoint": "/v1/accounts",
+    "method": "GET"
+  },
   "listLocation": {
     "endpoint": "/v1/accounts/{accountSid}/locations",
     "method": "GET"
