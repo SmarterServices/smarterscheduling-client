@@ -30,6 +30,7 @@ const commonSchemaForList = joi
   });
 
 const allowUnknownAndStrip = {allowUnknown: true, stripUnknown: true};
+const skipAllowUnknown = {allowUnknown: false, stripUnknown: false};
 
 const schema = {
   credential: joi
@@ -51,6 +52,7 @@ const schema = {
           .required()
           .description('Account Sid')
       })
+      .options(skipAllowUnknown)
       .required(),
     query: commonSchemaForList
       .keys({
@@ -58,6 +60,7 @@ const schema = {
           .string()
           .description('External id to filter the data by')
       })
+      .options(skipAllowUnknown)
   })
     .options(allowUnknownAndStrip),
   addLocation: joi
@@ -71,6 +74,7 @@ const schema = {
             .description('Account Sid')
         })
         .required()
+        .options(skipAllowUnknown)
         .description('Location params'),
       payload: joi.object({
         title: joi
@@ -90,6 +94,7 @@ const schema = {
           .description('Seat Management')
       })
         .required()
+        .options(skipAllowUnknown)
         .description('Location payload')
     })
     .options(allowUnknownAndStrip)
