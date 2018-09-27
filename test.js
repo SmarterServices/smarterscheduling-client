@@ -1,5 +1,8 @@
 'use strict';
 
+//set to 'dev' to validate function arguments
+process.env.NODE_ENV = 'dev';
+
 const Client = require('./index');
 const credential = {
   host: 'http://localhost:8013'
@@ -94,5 +97,5 @@ client
 
   })
   .catch(err => {
-    console.error(JSON.stringify(err, null, 2));
+    console.error(err);
   });
