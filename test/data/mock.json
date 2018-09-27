@@ -36,5 +36,29 @@
         "status": 404
       }
     }
+  },
+  "addLocation": {
+    "parameters": {
+      "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",
+      "title": "Test Location",
+      "seatManagement": "basic"
+    },
+    "response": {
+      "valid": {
+        "sid": "SL166b8087d8634233be3d31fbc00166fd",
+        "title": "Test Location",
+        "externalId": null,
+        "schedulingAccountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",
+        "seatManagement": "basic",
+        "createdDate": "2018-09-27T05:59:18.414Z",
+        "lastModifiedDate": "2018-09-27T05:59:18.415Z",
+        "systemModstamp": "2018-09-27T05:59:18.415Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
   }
 }

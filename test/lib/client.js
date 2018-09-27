@@ -25,6 +25,7 @@ describe('Client', function testClient() {
   });
 
   describe('List Location', function testClient() {
+    const apiName = 'listLocation';
 
     before('Create Mocker', function () {
       schedulingMock.getEndpointMocker('listLocation');
@@ -32,9 +33,9 @@ describe('Client', function testClient() {
 
     it('Should list location', () => {
       return client
-        .listLocation(Object.assign(config, mockData.listLocation.parameters))
+        .listLocation(Object.assign(config, mockData[apiName].parameters))
         .then((response) => {
-          expect(response).to.eql(mockData.listLocation.response.valid);
+          expect(response).to.eql(mockData[apiName].response.valid);
         });
     });
 
@@ -44,10 +45,40 @@ describe('Client', function testClient() {
       schedulingMock.getEndpointMocker('listLocation', 'fail');
 
       return client
-        .listLocation(Object.assign(config, mockData.listLocation.parameters))
+        .listLocation(Object.assign(config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
-          expect(error).to.eql(mockData.listLocation.response.fail);
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('Add Location', function testClient() {
+    const apiName = 'addLocation';
+
+    before('Create Mocker', function () {
+      schedulingMock.postEndpointMocker('addLocation');
+    });
+
+    it('Should add location', () => {
+      return client
+        .addLocation(Object.assign(config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to add location', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker('addLocation', 'fail');
+
+      return client
+        .listLocation(Object.assign(config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
         });
     });
 
