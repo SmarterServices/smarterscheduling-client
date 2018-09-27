@@ -48,6 +48,40 @@ const ProctorUMocker = {
     return scope;
   },
 
+  updateEndpointMocker: function (methodName, responseType = 'valid') {
+
+    let scope = nock(SCHEDULING_HOST)
+      .persist()
+      .put(endpointRegex)
+      .reply(function () {
+        let statusCode = 200;
+
+        if (responseType === 'fail') {
+          statusCode = 404;
+        }
+        return [statusCode, mockData[methodName].response[responseType]];
+      });
+    this.activeMocks.push(scope);
+    return scope;
+  },
+
+  deleteEndpointMocker: function (methodName, responseType = 'valid') {
+
+    let scope = nock(SCHEDULING_HOST)
+      .persist()
+      .delete(endpointRegex)
+      .reply(function () {
+        let statusCode = 200;
+
+        if (responseType === 'fail') {
+          statusCode = 404;
+        }
+        return [statusCode, mockData[methodName].response[responseType]];
+      });
+    this.activeMocks.push(scope);
+    return scope;
+  },
+
   reset: nock.cleanAll,
 
   /**

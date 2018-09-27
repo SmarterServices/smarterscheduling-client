@@ -13,7 +13,7 @@ const accountSid = 'SAb81222e1f38c4a9695269b76c9f20466';
 const locationSid = 'SLc74e37c2dbf147698dfd889a6e3d9200';
 const calendarSid = 'CL3e1a5ab28e23496898415721238cc560';
 const scheduleSid = 'SCb6d8f752815a40788502652bc9263305';
-const exclusionSid = 'AE2f9e6d1f0dab46f7a7edeb0e2d9cb27e';
+const exclusionSid = 'AE82320ed5e13449a39fc0351fa1f32da1';
 
 const queryParams = {
   limit: 1,
@@ -82,6 +82,43 @@ const getExclusion = {
   exclusionSid
 };
 
+const updateExclusion = {
+  accountSid,
+  exclusionSid,
+  title: 'Test Title',
+  startDate: '2018-09-18',
+  dayOfWeek: 2,
+  startTime: '13:49',
+  endTime: '22:49',
+  recurring: 'weekly'
+};
+
+const deleteExclusion = {
+  accountSid,
+  exclusionSid
+};
+
+const listAvailability = {
+  accountSid,
+  scheduleSid
+};
+
+const listAppointmentAvailability = {
+  accountSid,
+  startDateTime: '2018-09-24T06:13:30.595Z',
+  endDateTime: '2018-09-24T06:13:30.595Z',
+  duration: 45,
+  calendarSid
+};
+
+const listCalendarAvailability = {
+  accountSid,
+  calendarSid,
+  startDate: '2018-09-26',
+  endDate: '2018-10-26'
+};
+
+
 client
   // .addAccount(Object.assign({}, credential, addAccount))
 // .listAccount(Object.assign({}, credential, listAccount, queryParams))
@@ -91,7 +128,12 @@ client
 //   .getCalendar(Object.assign({}, credential, getCalendar))
 //   .addExclusion(Object.assign({}, credential, addExclusion))
 //   .listExclusion(Object.assign({}, credential, listExclusion))
-  .getExclusion(Object.assign({}, credential, getExclusion))
+  // .getExclusion(Object.assign({}, credential, getExclusion))
+  // .updateExclusion(Object.assign({}, credential, updateExclusion))
+  // .deleteExclusion(Object.assign({}, credential, deleteExclusion))
+  // .listAvailability(Object.assign({}, credential, listAvailability))
+  // .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
+  .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 

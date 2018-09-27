@@ -120,12 +120,12 @@ const schema = {
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid'),
           locationSid: joi
             .string()
-            .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
+            .regex(/^(SL)|(PL)[a-f0-9]{32}$/, 'Location Sid')
             .required()
             .description('Location Sid')
         })
@@ -167,12 +167,12 @@ const schema = {
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid'),
           locationSid: joi
             .string()
-            .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
+            .regex(/^(SL)|(PL)[a-f0-9]{32}$/, 'Location Sid')
             .required()
             .description('Location Sid')
         }),
@@ -185,12 +185,12 @@ const schema = {
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid'),
           locationSid: joi
             .string()
-            .regex(/^SL[a-f0-9]{32}$/, 'Location Sid')
+            .regex(/^(SL)|(PL)[a-f0-9]{32}$/, 'Location Sid')
             .required()
             .description('Location Sid'),
           calendarSid: joi
@@ -207,7 +207,7 @@ const schema = {
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid')
         }),
@@ -280,7 +280,7 @@ const schema = {
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid')
         }),
@@ -303,7 +303,7 @@ const schema = {
         .object({
           accountSid: joi
             .string()
-            .regex(/^SA[a-f0-9]{32}$/, 'Account Sid')
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
             .required()
             .description('Account Sid'),
           exclusionSid: joi
@@ -313,7 +313,186 @@ const schema = {
             .description('Exclusion Sid')
         })
     })
-    .description('Get Exclusion schema')
+    .description('Get Exclusion schema'),
+  updateExclusion: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          exclusionSid: joi
+            .string()
+            .regex(/^AE[a-f0-9]{32}$/, 'Exclusion Sid')
+            .required()
+            .description('Exclusion Sid')
+        }),
+      payload: joi.object({
+        title: joi
+          .string()
+          .required()
+          .description('Title'),
+        startDate: joi
+          .date()
+          .required()
+          .description('Start Date'),
+        endDate: joi
+          .date()
+          .min(joi.ref('startDate'))
+          .allow(null)
+          .description('End Date'),
+        dayOfWeek: joi
+          .number()
+          .integer()
+          .required()
+          .min(0)
+          .max(6)
+          .description('Day Of Week'),
+        startTime: joi
+          .date()
+          .format('HH:mm')
+          .required()
+          .description('Start Time'),
+        endTime: joi
+          .date()
+          .format('HH:mm')
+          .min(joi.ref('startTime'))
+          .required()
+          .description('End Time'),
+        recurring: joi
+          .string()
+          .valid('weekly')
+          .allow(null)
+          .description('Recurring'),
+        externalSystem: joi
+          .string()
+          .max(255)
+          .allow(null)
+          .description('External System'),
+        externalId: joi
+          .string()
+          .max(255)
+          .allow(null)
+          .description('External ID')
+      })
+        .raw()//keeping the startTime and endTime as input format
+        .required()
+        .description('Exclusion payload')
+    })
+    .description('Update Exclusion schema')
+  ,
+  deleteExclusion: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
+            .required()
+            .description('Account Sid'),
+          exclusionSid: joi
+            .string()
+            .regex(/^AE[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Exclusion Sid')
+        })
+    })
+    .description('Delete Exclusion schema'),
+  listAvailability: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          scheduleSid: joi
+            .string()
+            .regex(/^SC[a-f0-9]{32}$/, 'Schedule Sid')
+            .required()
+            .description('Schedule Sid')
+        }),
+      query: commonSchemaForList
+    })
+    .description('List Availability schema'),
+  listAppointmentAvailability: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
+            .required()
+            .description('Account Sid')
+        }),
+      query: joi
+        .object()
+        .keys({
+          startDateTime: joi
+            .string()
+            .isoDate()
+            .regex(/.*Z/, 'ISO time format in utc zone')
+            .example(utils.dateTemplate(), 'date template')
+            .required()
+            .description('The timestamp when the appointment is to be started'),
+          endDateTime: joi
+            .string()
+            .isoDate()
+            .regex(/.*Z/, 'ISO time format in utc zone')
+            .example(utils.dateTemplate(), 'date template')
+            .required()
+            .description('The timestamp when the appointment is to be ended'),
+          duration: joi
+            .number()
+            .integer()
+            .positive()
+            .required()
+            .description('Duration'),
+          calendarSid: joi
+            .string()
+            .regex(/^CL[a-f0-9]{32}$/, 'calendarSid')
+            .required()
+            .description('Identifier of Calendar')
+        })
+    })
+    .description('List Appointment Availability schema'),
+  listCalendarAvailability: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid'),
+          calendarSid: joi
+            .string()
+            .regex(/^CL[a-f0-9]{32}$/, 'Calendar Sid')
+            .required()
+            .description('Schedule Sid')
+        }),
+      query:joi
+        .object({
+          startDate: joi
+            .date()
+            .format('YYYY-MM-DD')
+            .required()
+            .description('Start Date'),
+          endDate: joi
+            .date()
+            .format('YYYY-MM-DD')
+            .min(joi.ref('startDate'))
+            .required()
+            .description('End Date')
+        })
+        .required()
+        .raw()//keeping the startTime and endTime as input format
+        .description('Query to get data')
+    })
+    .description('List Calendar Availability schema')
 };
 
 module.exports = schema;

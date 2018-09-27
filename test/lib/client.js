@@ -328,4 +328,154 @@ describe('Client', function testClient() {
 
   });
 
+  describe('Update Exclusion', function testClient() {
+    const apiName = 'updateExclusion';
+
+    before('Create Mocker', function () {
+      schedulingMock.updateEndpointMocker(apiName);
+    });
+
+    it('Should Update Exclusion', () => {
+      return client
+        .updateExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Update Exclusion', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.updateEndpointMocker(apiName, 'fail');
+
+      return client
+        .updateExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('Delete Exclusion', function testClient() {
+    const apiName = 'deleteExclusion';
+
+    before('Create Mocker', function () {
+      schedulingMock.deleteEndpointMocker(apiName);
+    });
+
+    it('Should Delete Exclusion', () => {
+      return client
+        .deleteExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Delete Exclusion', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.deleteEndpointMocker(apiName, 'fail');
+
+      return client
+        .deleteExclusion(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('List Availability', function testClient() {
+    const apiName = 'listAvailability';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Availability', () => {
+      return client
+        .listAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Availability', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('List Appointment Availability', function testClient() {
+    const apiName = 'listAppointmentAvailability';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Appointment Availability', () => {
+      return client
+        .listAppointmentAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Appointment Availability', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listAppointmentAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('List Calendar Availability', function testClient() {
+    const apiName = 'listCalendarAvailability';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Calendar Availability', () => {
+      return client
+        .listCalendarAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Calendar Availability', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listCalendarAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
 });

@@ -38,5 +38,25 @@
   "getExclusion": {
     "endpoint": "/v1/accounts/{accountSid}/exclusions/{exclusionSid}",
     "method": "GET"
+  },
+  "updateExclusion": {
+    "endpoint": "/v1/accounts/{accountSid}/exclusions/{exclusionSid}",
+    "method": "PUT"
+  },
+  "deleteExclusion": {
+    "endpoint": "/v1/accounts/{accountSid}/exclusions/{exclusionSid}",
+    "method": "DELETE"
+  },
+  "listAvailability": {
+    "endpoint": "/v1/accounts/{accountSid}/schedules/{scheduleSid}/availability",
+    "method": "GET"
+  },
+  "listAppointmentAvailability": {
+    "endpoint": "/v1/accounts/{accountSid}/availability",
+    "method": "GET"
+  },
+  "listCalendarAvailability": {
+    "endpoint": "/v1/accounts/{accountSid}/calendars/{calendarSid}/availability",
+    "method": "GET"
   }
 }
