@@ -2,6 +2,57 @@
   "config": {
     "host": "http://localhost:8013"
   },
+  "listAccount": {
+    "parameters": {
+      "limit": 1,
+      "offset": 1
+    },
+    "response": {
+      "valid": {
+        "total": 1,
+        "first": "http://localhost:8013/v1/accounts?sortKeys=createdDate&sortOrder=ASC",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 1,
+        "offset": 0,
+        "results": [
+          {
+            "sid": "SA3df1b65ab9184fe58353d7bd6398df68",
+            "title": "Test1",
+            "externalId": "123",
+            "createdDate": "2018-09-16T13:49:30.000Z",
+            "editDate": "2018-09-16T14:07:37.000Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "addAccount": {
+    "parameters": {
+      "title": "Account of Test",
+      "externalId": "111"
+    },
+    "response": {
+      "valid": {
+        "sid": "SA3df1b65ab9184fe58353d7bd6398df68",
+        "title": "Test1",
+        "externalId": "123",
+        "createdDate": "2018-09-16T13:49:30.000Z",
+        "editDate": "2018-09-16T14:07:37.000Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
   "listLocation": {
     "parameters": {
       "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",

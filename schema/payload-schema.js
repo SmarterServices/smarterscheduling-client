@@ -32,7 +32,8 @@ const commonSchemaForList = joi
       .valid('ASC', 'DESC')
       .description('Sort order')
   })
-  .options(skipAllowUnknown);
+  .options(skipAllowUnknown)
+  .description('List query');
 
 const schema = {
   credential: joi
@@ -50,25 +51,44 @@ const schema = {
     })
     .options(allowUnknownAndStrip)
     .description('List account schema'),
-  listLocation: joi
+  addAccount: joi
     .object({
-    params: joi
-      .object({
-        accountSid: joi
+      payload: joi.object({
+        title: joi
           .string()
-          .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
           .required()
-          .description('Account Sid')
-      })
-      .options(skipAllowUnknown)
-      .required(),
-    query: commonSchemaForList
-      .keys({
+          .description('Title of the account'),
         externalId: joi
           .string()
-          .description('External id to filter the data by')
+          .allow(null)
+          .max(255)
+          .description('External ID')
       })
-  })
+        .options(skipAllowUnknown)
+        .required()
+        .description('Account payload')
+    })
+    .options(allowUnknownAndStrip)
+    .description('Add Account schema'),
+  listLocation: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
+            .required()
+            .description('Account Sid')
+        })
+        .options(skipAllowUnknown)
+        .required(),
+      query: commonSchemaForList
+        .keys({
+          externalId: joi
+            .string()
+            .description('External id to filter the data by')
+        })
+    })
     .options(allowUnknownAndStrip),
   addLocation: joi
     .object({
@@ -104,6 +124,7 @@ const schema = {
         .options(skipAllowUnknown)
         .description('Location payload')
     })
+    .description('Add Location schema')
     .options(allowUnknownAndStrip)
 };
 

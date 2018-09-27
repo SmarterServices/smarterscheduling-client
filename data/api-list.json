@@ -3,6 +3,10 @@
     "endpoint": "/v1/accounts",
     "method": "GET"
   },
+  "addAccount": {
+    "endpoint": "/v1/accounts",
+    "method": "POST"
+  },
   "listLocation": {
     "endpoint": "/v1/accounts/{accountSid}/locations",
     "method": "GET"

@@ -19,9 +19,73 @@ describe('Client', function testClient() {
     schedulingMock.reset();
   });
 
+  afterEach('Reset Mock', function () {
+    schedulingMock.removeInterceptor();
+  });
+
   it('Should create new client', function testCreateNewClient() {
     client = new Client();
     expect(client).instanceof(Client);
+  });
+
+  describe('Add Account', function testClient() {
+    const apiName = 'addAccount';
+
+    before('Create Mocker', function () {
+      schedulingMock.postEndpointMocker(apiName);
+    });
+
+    it('Should Add Account', () => {
+      return client
+        .addAccount(Object.assign(config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Add Account', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.postEndpointMocker(apiName, 'fail');
+
+      return client
+        .addAccount(Object.assign(config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('List Account', function testClient() {
+    const apiName = 'listAccount';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Account', () => {
+      return client
+        .listAccount(Object.assign(config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Account', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listAccount(Object.assign(config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
   });
 
   describe('List Location', function testClient() {

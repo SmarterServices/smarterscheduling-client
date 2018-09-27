@@ -6,6 +6,15 @@ const credential = {
 };
 const client = new Client();
 
+const listAccount = {
+  limit: 1,
+  offset: 1
+};
+
+const addAccount = {
+  title: 'Account of Test',
+  externalId: '111'
+};
 
 const listLocation = {
   accountSid: 'PA3cacf5fc6e024b39823a3f31f7eb096b',
@@ -20,8 +29,10 @@ const addLocation = {
 };
 
 client
-  .listLocation(Object.assign(credential, listLocation))
-  //.addLocation(Object.assign(credential, addLocation))
+  .addAccount(Object.assign(credential, addAccount))
+  // .listAccount(Object.assign(credential, listAccount))
+  // .listLocation(Object.assign(credential, listLocation))
+  // .addLocation(Object.assign(credential, addLocation))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 
