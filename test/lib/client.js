@@ -136,10 +136,10 @@ describe('Client', function testClient() {
     it('Should fail to add location', () => {
 
       schedulingMock.removeInterceptor();
-      schedulingMock.getEndpointMocker('addLocation', 'fail');
+      schedulingMock.postEndpointMocker('addLocation', 'fail');
 
       return client
-        .listLocation(Object.assign({}, config, mockData[apiName].parameters))
+        .addLocation(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);
