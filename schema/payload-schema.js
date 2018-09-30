@@ -75,7 +75,11 @@ const schema = {
       host: joi
         .string()
         .required()
-        .description('Host url')
+        .description('Host url'),
+      authorizationToken: joi
+        .string()
+        .required()
+        .description('Access Token')
     })
     .required()
     .description('credential schema'),

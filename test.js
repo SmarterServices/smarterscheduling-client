@@ -5,7 +5,8 @@ process.env.NODE_ENV = 'dev';
 
 const Client = require('./index');
 const credential = {
-  host: 'http://localhost:8013'
+  host: 'http://localhost:8013',
+  authorizationToken: 'dummyToken'
 };
 const client = new Client();
 
