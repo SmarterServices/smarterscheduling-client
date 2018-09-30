@@ -388,6 +388,36 @@ describe('Client', function testClient() {
 
   });
 
+  describe('Add Availability', function testClient() {
+    const apiName = 'addAvailability';
+
+    before('Create Mocker', function () {
+      schedulingMock.postEndpointMocker(apiName);
+    });
+
+    it('Should Add Availability', () => {
+      return client
+        .addAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to add Availability', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.postEndpointMocker(apiName, 'fail');
+
+      return client
+        .addAvailability(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
   describe('List Availability', function testClient() {
     const apiName = 'listAvailability';
 

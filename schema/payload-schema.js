@@ -31,13 +31,55 @@ const commonSchemaForList = joi
   })
   .description('List query');
 
+const baseAvailabilitySchema = joi
+  .object()
+  .keys({
+    startDate: joi
+      .date()
+      .required()
+      .description('Start Date'),
+    endDate: joi
+      .date()
+      .min(joi.ref('startDate'))
+      .allow(null)
+      .description('End Date'),
+    dayOfWeek: joi
+      .number()
+      .integer()
+      .required()
+      .min(0)
+      .max(6)
+      .description('Day Of Week'),
+    startTime: joi
+      .date()
+      .format('HH:mm')
+      .required()
+      .description('Start Time'),
+    endTime: joi
+      .date()
+      .format('HH:mm')
+      .min(joi.ref('startTime'))
+      .required()
+      .description('End Time'),
+    recurring: joi
+      .string()
+      .valid('weekly')
+      .default('weekly')
+      .description('Recurring'),
+  })
+  .raw();//keeping the startTime and endTime as input format
+
 const schema = {
   credential: joi
     .object({
       host: joi
         .string()
         .required()
-        .description('Host url')
+        .description('Host url'),
+      authorizationToken: joi
+        .string()
+        .required()
+        .description('Access Token')
     })
     .required()
     .description('credential schema'),
@@ -381,8 +423,7 @@ const schema = {
         .required()
         .description('Exclusion payload')
     })
-    .description('Update Exclusion schema')
-  ,
+    .description('Update Exclusion schema'),
   deleteExclusion: joi
     .object({
       params: joi
@@ -400,6 +441,66 @@ const schema = {
         })
     })
     .description('Delete Exclusion schema'),
+  addAvailability: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
+            .required()
+            .description('Account Sid'),
+          scheduleSid: joi
+            .string()
+            .regex(/^SC[a-f0-9]{32}$/, 'Schedule Sid')
+            .required()
+            .description('Schedule Sid')
+        }),
+      payload: joi.object({
+        create: joi
+          .array()
+          .items(
+            baseAvailabilitySchema
+          )
+          .default([])
+          .description('Availability to create'),
+        update: joi
+          .array()
+          .items(
+            baseAvailabilitySchema
+              .keys({
+                sid: joi
+                  .string()
+                  .regex(/^AV[a-f0-9]{32}$/, 'availability Sid')
+                  .required()
+                  .description('availability Sid')
+              })
+          )
+          .default([])
+          .description('Availability to update'),
+        delete: joi
+          .array()
+          .items(
+            joi
+              .object({
+                sid: joi
+                  .string()
+                  .regex(/^AV[a-f0-9]{32}$/, 'availability Sid')
+                  .required()
+                  .description('availability Sid')
+              })
+              .options({ //allow unknown attributes other than sid and remove them
+                allowUnknown: true,
+                stripUnknown: true
+              })
+          )
+          .default([])
+          .description('Availability to delete')
+      })
+        .required()
+        .description('Availability payload')
+    })
+    .description('Add Availability schema'),
   listAvailability: joi
     .object({
       params: joi

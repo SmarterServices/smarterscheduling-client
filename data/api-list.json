@@ -47,6 +47,10 @@
     "endpoint": "/v1/accounts/{accountSid}/exclusions/{exclusionSid}",
     "method": "DELETE"
   },
+  "addAvailability": {
+    "endpoint": "/v1/accounts/{accountSid}/schedules/{scheduleSid}/availability",
+    "method": "POST"
+  },
   "listAvailability": {
     "endpoint": "/v1/accounts/{accountSid}/schedules/{scheduleSid}/availability",
     "method": "GET"
