@@ -1,6 +1,7 @@
 {
   "config": {
-    "host": "http://localhost:8013"
+    "host": "http://localhost:8013",
+    "authorizationToken": "testToken"
   },
   "listAccount": {
     "parameters": {
