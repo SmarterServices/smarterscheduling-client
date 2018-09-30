@@ -368,6 +368,61 @@
       }
     }
   },
+  "addAvailability": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+      "create": [
+        {
+          "startDate": "2018-09-26T10:21:06.764Z",
+          "dayOfWeek": 0,
+          "startTime": "01:00",
+          "endTime": "02:00",
+          "recurring": "weekly"
+        }
+      ],
+      "update": [
+        {
+          "sid": "AV8b72ce979a634c96976b272cb302774e",
+          "startDate": "2018-09-26T10:21:06.764Z",
+          "dayOfWeek": 0,
+          "startTime": "01:00",
+          "endTime": "02:00",
+          "recurring": "weekly"
+        }
+      ]
+    },
+    "response": {
+      "valid": {
+        "total": 1,
+        "first": "http://localhost:8013/v1/accounts/SAb81222e1f38c4a9695269b76c9f20466/schedules/SCb6d8f752815a40788502652bc9263305/availability?sortKeys=createdDate&sortOrder=ASC",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 1,
+        "offset": 0,
+        "results": [
+          {
+            "sid": "AVf52969438124483aa827eb021e66e8c0",
+            "scheduleSid": "SCb6d8f752815a40788502652bc9263305",
+            "startDate": "2018-09-26",
+            "endDate": null,
+            "dayOfWeek": 0,
+            "startTime": "19:00:00",
+            "endTime": "20:00:00",
+            "recurring": "weekly",
+            "createdDate": "2018-09-27T12:45:05.497Z",
+            "editDate": "2018-09-27T12:45:05.497Z"
+          }
+        ]
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
   "listAvailability": {
     "parameters": {
       "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",

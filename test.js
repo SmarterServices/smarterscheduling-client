@@ -111,6 +111,30 @@ const listAppointmentAvailability = {
   calendarSid
 };
 
+const addAvailability = {
+  accountSid,
+  scheduleSid,
+  create: [
+    {
+      startDate: '2018-09-26T10:21:06.764Z',
+      dayOfWeek: 0,
+      startTime: '01:00',
+      endTime: '02:00',
+      recurring: 'weekly'
+    }
+  ],
+  update: [
+    {
+      sid: 'AV8b72ce979a634c96976b272cb302774e',
+      startDate: '2018-09-26T10:21:06.764Z',
+      dayOfWeek: 0,
+      startTime: '01:00',
+      endTime: '02:00',
+      recurring: 'weekly'
+    }
+  ]
+};
+
 const listCalendarAvailability = {
   accountSid,
   calendarSid,
@@ -120,7 +144,7 @@ const listCalendarAvailability = {
 
 
 client
-  // .addAccount(Object.assign({}, credential, addAccount))
+// .addAccount(Object.assign({}, credential, addAccount))
 // .listAccount(Object.assign({}, credential, listAccount, queryParams))
 //   .listLocation(Object.assign({}, credential, listLocation, queryParams))
 //   .addLocation(Object.assign({}, credential, addLocation))
@@ -128,11 +152,12 @@ client
 //   .getCalendar(Object.assign({}, credential, getCalendar))
 //   .addExclusion(Object.assign({}, credential, addExclusion))
 //   .listExclusion(Object.assign({}, credential, listExclusion))
-  // .getExclusion(Object.assign({}, credential, getExclusion))
-  // .updateExclusion(Object.assign({}, credential, updateExclusion))
-  // .deleteExclusion(Object.assign({}, credential, deleteExclusion))
-  // .listAvailability(Object.assign({}, credential, listAvailability))
-  // .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
+// .getExclusion(Object.assign({}, credential, getExclusion))
+// .updateExclusion(Object.assign({}, credential, updateExclusion))
+// .deleteExclusion(Object.assign({}, credential, deleteExclusion))
+// .addAvailability(Object.assign({}, credential, addAvailability))
+// .listAvailability(Object.assign({}, credential, listAvailability))
+// .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
   .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
