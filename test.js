@@ -31,6 +31,10 @@ const addAccount = {
   externalId: '111'
 };
 
+const getAccount = {
+  accountSid
+};
+
 const listLocation = {
   accountSid
 };
@@ -147,6 +151,7 @@ const listCalendarAvailability = {
 client
 // .addAccount(Object.assign({}, credential, addAccount))
 // .listAccount(Object.assign({}, credential, listAccount, queryParams))
+  .getAccount(Object.assign({}, credential, getAccount))
 //   .listLocation(Object.assign({}, credential, listLocation, queryParams))
 //   .addLocation(Object.assign({}, credential, addLocation))
 //   .addCalendar(Object.assign({}, credential, addCalendar))
@@ -159,7 +164,7 @@ client
 // .addAvailability(Object.assign({}, credential, addAvailability))
 // .listAvailability(Object.assign({}, credential, listAvailability))
 // .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
-  .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
+//   .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 
