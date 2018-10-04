@@ -167,6 +167,11 @@ const addAppointment = {
   metadata: '{\"test\":1,\"test2\":\"2\"}'
 };
 
+const getAppointment = {
+  accountSid: 'PAd67489a1c3b84e668ca65a15efa57d71',
+  appointmentSid: 'SPb601f184b8dd47ad916a5cfa35b968e7'
+};
+
 
 client
 // .addAccount(Object.assign({}, credential, addAccount))
@@ -186,7 +191,8 @@ client
 // .listAvailability(Object.assign({}, credential, listAvailability))
 // .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
 //   .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
-  .addAppointment(Object.assign({}, credential, addAppointment))
+//   .addAppointment(Object.assign({}, credential, addAppointment))
+  .getAppointment(Object.assign({}, credential, getAppointment))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 
