@@ -45,6 +45,11 @@ const addLocation = {
   seatManagement: 'basic'
 };
 
+const getLocation = {
+  accountSid,
+  locationSid
+};
+
 const addCalendar = {
   accountSid,
   locationSid,
@@ -151,9 +156,10 @@ const listCalendarAvailability = {
 client
 // .addAccount(Object.assign({}, credential, addAccount))
 // .listAccount(Object.assign({}, credential, listAccount, queryParams))
-  .getAccount(Object.assign({}, credential, getAccount))
+//   .getAccount(Object.assign({}, credential, getAccount))
 //   .listLocation(Object.assign({}, credential, listLocation, queryParams))
 //   .addLocation(Object.assign({}, credential, addLocation))
+  .getLocation(Object.assign({}, credential, getLocation))
 //   .addCalendar(Object.assign({}, credential, addCalendar))
 //   .getCalendar(Object.assign({}, credential, getCalendar))
 //   .addExclusion(Object.assign({}, credential, addExclusion))

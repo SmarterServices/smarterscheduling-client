@@ -168,6 +168,25 @@ const schema = {
         .description('Location payload')
     })
     .description('Add Location schema'),
+  getLocation: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'accountSid')
+            .required()
+            .description('Account Sid'),
+          locationSid: joi
+            .string()
+            .regex(/^(SL)|(PL)[a-f0-9]{32}$/, 'Location Sid')
+            .required()
+            .description('Location Sid')
+        })
+        .required()
+        .description('Location params')
+    })
+    .description('Get Location schema'),
   addCalendar: joi
     .object({
       params: joi
