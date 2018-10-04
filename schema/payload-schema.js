@@ -624,7 +624,92 @@ const schema = {
         .raw()//keeping the startTime and endTime as input format
         .description('Query to get data')
     })
-    .description('List Calendar Availability schema')
+    .description('List Calendar Availability schema'),
+  addAppointment: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid')
+        }),
+      payload: joi.object({
+        seatSid: joi
+          .string()
+          .regex(/^SE[a-f0-9]{32}$/, 'SeatSid')
+          .optional()
+          .description('Seat Sid'),
+        calendarSid: joi
+          .string()
+          .regex(/^CL[a-f0-9]{32}$/, 'Calendar Sid')
+          .required()
+          .description('Calendar Sid'),
+        startDateTime: joi
+          .string()
+          .isoDate()
+          .regex(/.*Z/, 'ISO time format in utc zone')
+          .example(utils.dateTemplate(), 'date template')
+          .required()
+          .description('Start Date'),
+        duration: joi
+          .number()
+          .integer()
+          .positive()
+          .required()
+          .description('Duration of Exam'),
+        externalId: joi
+          .string()
+          .allow(null, '')
+          .max(255)
+          .empty('')
+          .default(null)
+          .description('External ID'),
+        externalSystem: joi
+          .string()
+          .allow(null, '')
+          .max(255)
+          .empty('')
+          .default(null)
+          .description('External System'),
+        firstName: joi
+          .string()
+          .required()
+          .description('The first name of the person making the reservation'),
+        lastName: joi
+          .string()
+          .required()
+          .description('The last name of the person making the reservation'),
+        email: joi
+          .string()
+          .email()
+          .required()
+          .description('Email'),
+        phone: joi
+          .string()
+          .allow(null, '')
+          .empty('')
+          .default(null)
+          .description('Phone'),
+        notes: joi
+          .string()
+          .allow(null, '')
+          .empty('')
+          .default(null)
+          .description('Notes'),
+        metadata: joi
+          .object()
+          .options({allowUnknown: true, stripUnknown: false})
+          .raw()
+          .empty('')
+          .default(null)
+          .description('Metadata')
+      })
+        .required()
+        .description('Appointment payload')
+    })
+    .description('Add Appointment schema')
 };
 
 module.exports = schema;

@@ -70,5 +70,9 @@
   "listCalendarAvailability": {
     "endpoint": "/v1/accounts/{accountSid}/calendars/{calendarSid}/availability",
     "method": "GET"
+  },
+  "addAppointment": {
+    "endpoint": "/v1/accounts/{accountSid}/appointments",
+    "method": "POST"
   }
 }
