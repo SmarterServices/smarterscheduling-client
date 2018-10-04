@@ -7,6 +7,10 @@
     "endpoint": "/v1/accounts",
     "method": "POST"
   },
+  "getAccount": {
+    "endpoint": "/v1/accounts/{accountSid}",
+    "method": "GET"
+  },
   "listLocation": {
     "endpoint": "/v1/accounts/{accountSid}/locations",
     "method": "GET"
