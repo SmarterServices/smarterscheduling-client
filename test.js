@@ -147,11 +147,26 @@ const listCalendarAvailability = {
   endDate: '2018-10-26'
 };
 
+const addAppointment = {
+  accountSid: 'PAd67489a1c3b84e668ca65a15efa57d71',
+  calendarSid: 'CL2505e739fc6d47d6952b482729d02108',
+  startDateTime: '2018-10-03T13:00:00.00Z',
+  duration: 5,
+  externalId: 'string',
+  externalSystem: 'string',
+  firstName: 'string',
+  lastName: 'string',
+  email: 'sting@test.com',
+  phone: 'string',
+  notes: 'string',
+  metadata: '{\"test\":1,\"test2\":\"2\"}'
+};
+
 
 client
 // .addAccount(Object.assign({}, credential, addAccount))
 // .listAccount(Object.assign({}, credential, listAccount, queryParams))
-  .getAccount(Object.assign({}, credential, getAccount))
+//   .getAccount(Object.assign({}, credential, getAccount))
 //   .listLocation(Object.assign({}, credential, listLocation, queryParams))
 //   .addLocation(Object.assign({}, credential, addLocation))
 //   .addCalendar(Object.assign({}, credential, addCalendar))
@@ -165,6 +180,7 @@ client
 // .listAvailability(Object.assign({}, credential, listAvailability))
 // .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
 //   .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
+  .addAppointment(Object.assign({}, credential, addAppointment))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 
