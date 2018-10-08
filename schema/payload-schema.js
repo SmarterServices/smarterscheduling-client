@@ -701,6 +701,7 @@ const schema = {
         metadata: joi
           .object()
           .options({allowUnknown: true, stripUnknown: false})
+          .allow(null, '')
           .raw()
           .empty('')
           .default(null)
