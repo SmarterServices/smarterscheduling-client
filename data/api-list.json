@@ -78,5 +78,9 @@
   "getAppointment": {
     "endpoint": "/v1/accounts/{accountSid}/appointments/{appointmentSid}",
     "method": "GET"
+  },
+  "patchAppointment": {
+    "endpoint": "/v1/accounts/{accountSid}/appointments/{appointmentSid}",
+    "method": "PATCH"
   }
 }

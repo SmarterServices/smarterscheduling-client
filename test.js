@@ -169,7 +169,24 @@ const addAppointment = {
 
 const getAppointment = {
   accountSid: 'PAd67489a1c3b84e668ca65a15efa57d71',
-  appointmentSid: 'SPb601f184b8dd47ad916a5cfa35b968e7'
+  appointmentSid: 'SP3e342468b6194bae82802e903804fc28'
+};
+const patchAppointment = {
+  accountSid: 'PAd67489a1c3b84e668ca65a15efa57d71',
+  appointmentSid: 'SP3e342468b6194bae82802e903804fc28',
+  startDateTime: '2018-10-03T13:00:00.00Z',
+  duration: 25,
+  externalId: 'testString',
+  externalSystem: 'test system',
+  firstName: 'string',
+  lastName: 'string',
+  email: 'sting@test.com',
+  phone: 'string',
+  notes: 'string',
+  metadata: '{\"test\":1,\"test2\": 2}',
+  internalNotes: 'test Notes',
+  status: 'cancelled',
+  statusMemo: 'Reason For cancellation'
 };
 
 
@@ -179,7 +196,7 @@ client
 //   .getAccount(Object.assign({}, credential, getAccount))
 //   .listLocation(Object.assign({}, credential, listLocation, queryParams))
 //   .addLocation(Object.assign({}, credential, addLocation))
-  .getLocation(Object.assign({}, credential, getLocation))
+//   .getLocation(Object.assign({}, credential, getLocation))
 //   .addCalendar(Object.assign({}, credential, addCalendar))
 //   .getCalendar(Object.assign({}, credential, getCalendar))
 //   .addExclusion(Object.assign({}, credential, addExclusion))
@@ -192,7 +209,8 @@ client
 // .listAppointmentAvailability(Object.assign({}, credential, listAppointmentAvailability))
 //   .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
 //   .addAppointment(Object.assign({}, credential, addAppointment))
-  .getAppointment(Object.assign({}, credential, getAppointment))
+//   .getAppointment(Object.assign({}, credential, getAppointment))
+  .patchAppointment(Object.assign({}, credential, patchAppointment))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 
