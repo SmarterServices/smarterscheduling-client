@@ -82,5 +82,9 @@
   "patchAppointment": {
     "endpoint": "/v1/accounts/{accountSid}/appointments/{appointmentSid}",
     "method": "PATCH"
+  },
+  "listAppointment": {
+    "endpoint": "/v1/accounts/{accountSid}/appointments",
+    "method": "GET"
   }
 }

@@ -508,4 +508,34 @@ describe('Client', function testClient() {
 
   });
 
+  describe('List Appointment', function testClient() {
+    const apiName = 'listAppointment';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should List Appointment', () => {
+      return client
+        .listAppointment(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to List Appointment', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .listAppointment(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
 });

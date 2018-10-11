@@ -822,7 +822,44 @@ const schema = {
         .required()
         .description('Patch Schema Payload')
     })
-    .description('Patch Appointment schema')
+    .description('Patch Appointment schema'),
+  listAppointment: joi
+    .object({
+      params: joi
+        .object({
+          accountSid: joi
+            .string()
+            .regex(/^(SA)|(PA)[a-f0-9]{32}$/, 'Account Sid')
+            .required()
+            .description('Account Sid')
+        })
+        .description('List Appointment Params'),
+      query: joi
+        .object({
+          startDate: joi
+            .date()
+            .format('YYYY-MM-DD')
+            .required()
+            .description('Start Date'),
+          endDate: joi
+            .date()
+            .format('YYYY-MM-DD')
+            .min(joi.ref('startDate'))
+            .required()
+            .description('End Date'),
+          calendarSid: joi
+            .string()
+            .regex(/^CL[a-f0-9]{32}$/, 'calendarSid')
+            .description('Identifier of Calendar'),
+          locationSid: joi
+            .string()
+            .regex(/^(SL)|(PL)[a-f0-9]{32}$/, 'locationSid')
+            .description('Identifier of Calendar')
+        })
+        .raw()
+        .description('List Appointment Query')
+    })
+    .description('List Appointment schema')
 };
 
 module.exports = schema;
