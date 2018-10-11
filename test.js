@@ -189,6 +189,12 @@ const patchAppointment = {
   statusMemo: 'Reason For cancellation'
 };
 
+const listAppointment = {
+  accountSid: 'PAd67489a1c3b84e668ca65a15efa57d71',
+  startDate: '2018-10-02',
+  endDate: '2018-10-15'
+};
+
 
 client
 // .addAccount(Object.assign({}, credential, addAccount))
@@ -210,7 +216,8 @@ client
 //   .listCalendarAvailability(Object.assign({}, credential, listCalendarAvailability))
 //   .addAppointment(Object.assign({}, credential, addAppointment))
 //   .getAppointment(Object.assign({}, credential, getAppointment))
-  .patchAppointment(Object.assign({}, credential, patchAppointment))
+//   .patchAppointment(Object.assign({}, credential, patchAppointment))
+  .listAppointment(Object.assign({}, credential, listAppointment))
   .then(response => {
     console.log(JSON.stringify(response, null, 2));
 

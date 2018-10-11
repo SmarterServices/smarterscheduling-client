@@ -552,5 +552,108 @@
         "status": 404
       }
     }
+  },
+  "listAppointment": {
+    "parameters": {
+      "accountSid": "PAd67489a1c3b84e668ca65a15efa57d71",
+      "locationSid": "PLd67489a1c3b84e668ca65a15efa57d71",
+      "calendarSid": "CLd67489a1c3b84e668ca65a15efa57d71",
+      "startDate": "2018-10-02",
+      "endDate": "2018-10-15"
+    },
+    "response": {
+      "valid": {
+        "total": 13,
+        "first": "http://localhost:8013/v1/accounts/PAd67489a1c3b84e668ca65a15efa57d71/appointments?startDate=2018-10-02&endDate=2018-10-15",
+        "next": null,
+        "prev": null,
+        "last": null,
+        "count": 13,
+        "offset": 0,
+        "results": {
+          "2018-10-03": [
+            {
+              "sid": "SP07918a30b1364474804661c8ecb8958a",
+              "startDateTime": "2018-10-03T13:00:00.000Z",
+              "endDateTime": "2018-10-03T13:05:00.000Z",
+              "firstName": "string",
+              "lastName": "string",
+              "email": "sting@test.com",
+              "phone": "string",
+              "externalId": "string",
+              "externalSystem": "string",
+              "notes": "string",
+              "internalNotes": null,
+              "metadata": "{\"test\":1,\"test2\":\"2\"}",
+              "duration": 5,
+              "calendar": {
+                "sid": "CL2505e739fc6d47d6952b482729d02108",
+                "title": "Calendar One"
+              },
+              "seat": {
+                "sid": "SE3b5f25c597ef4a399ba1d1ce00a6155d",
+                "title": "white74389",
+                "description": null
+              }
+            },
+            {
+              "sid": "SPf6eafcd317714ffd8d046ae338fcf64d",
+              "startDateTime": "2018-10-03T13:00:00.000Z",
+              "endDateTime": "2018-10-03T13:05:00.000Z",
+              "firstName": "string",
+              "lastName": "string",
+              "email": "sting@test.com",
+              "phone": "string",
+              "externalId": "string",
+              "externalSystem": "string",
+              "notes": "string",
+              "internalNotes": null,
+              "metadata": "{\"test\":1,\"test2\":\"2\"}",
+              "duration": 5,
+              "calendar": {
+                "sid": "CL2505e739fc6d47d6952b482729d02108",
+                "title": "Calendar One"
+              },
+              "seat": {
+                "sid": "SEf07e88da582b4102a1558cd1433a0440",
+                "title": "teal3478",
+                "description": null
+              }
+            }
+          ],
+          "2018-10-08": [
+            {
+              "sid": "SP12b886fca2404fa795321225ce9d3adf",
+              "startDateTime": "2018-10-08T13:00:00.000Z",
+              "endDateTime": "2018-10-08T13:05:00.000Z",
+              "firstName": "string",
+              "lastName": "string",
+              "email": "sting@test.com",
+              "phone": "string",
+              "externalId": "string",
+              "externalSystem": "string",
+              "notes": "string",
+              "internalNotes": null,
+              "metadata": "{\"test\":1,\"test2\":\"2\"}",
+              "duration": 5,
+              "calendar": {
+                "sid": "CL2505e739fc6d47d6952b482729d02108",
+                "title": "Calendar One"
+              },
+              "seat": {
+                "sid": "SE3b5f25c597ef4a399ba1d1ce00a6155d",
+                "title": "white74389",
+                "description": null
+              }
+            }
+          ]
+        }
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
   }
 }
