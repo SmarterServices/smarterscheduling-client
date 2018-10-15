@@ -694,5 +694,34 @@
         "status": 404
       }
     }
+  },
+  "getAppointment": {
+    "parameters": {
+      "accountSid": "PAd67489a1c3b84e668ca65a15efa57d71",
+      "appointmentSid": "SP6c6917ac1a6b459a99337ecacc44a15f"
+    },
+    "response": {
+      "valid": {
+        "sid": "SP6c6917ac1a6b459a99337ecacc44a15f",
+        "seatSid": "SE175cca3e3e0e429083c39857b2229808",
+        "calendarSid": "CL2505e739fc6d47d6952b482729d02108",
+        "startDateTime": "2018-10-03T13:00:00.00Z",
+        "endDateTime": "2018-10-03T13:05:00.000Z",
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string@test.com",
+        "phone": "string",
+        "externalId": "string",
+        "externalSystem": "string",
+        "notes": "string",
+        "internalNotes": null,
+        "metadata": "{\"test\":1,\"test2\":\"2\"}"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
   }
 }
