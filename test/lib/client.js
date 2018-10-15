@@ -598,4 +598,34 @@ describe('Client', function testClient() {
 
   });
 
+  describe('Patch Appointment', function testClient() {
+    const apiName = 'patchAppointment';
+
+    before('Create Mocker', function () {
+      schedulingMock.patchEndpointMocker(apiName);
+    });
+
+    it('Should Patch Appointment', () => {
+      return client
+        .patchAppointment(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Patch Appointment', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.patchEndpointMocker(apiName, 'fail');
+
+      return client
+        .patchAppointment(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
 });
