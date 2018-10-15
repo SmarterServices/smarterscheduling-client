@@ -553,6 +553,31 @@
       }
     }
   },
+  "addAppointment": {
+    "parameters": {
+      "accountSid": "PAd67489a1c3b84e668ca65a15efa57d71",
+      "calendarSid": "CL2505e739fc6d47d6952b482729d02108",
+      "startDateTime": "2018-10-03T13:00:00.00Z",
+      "duration": 5,
+      "externalId": "string",
+      "externalSystem": "string",
+      "firstName": "string",
+      "lastName": "string",
+      "email": "sting@test.com",
+      "phone": "string",
+      "notes": "string",
+      "metadata": "{\"test\":1,\"test2\":\"2\"}"
+    },
+    "response": {
+      "valid": {
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
   "listAppointment": {
     "parameters": {
       "accountSid": "PAd67489a1c3b84e668ca65a15efa57d71",

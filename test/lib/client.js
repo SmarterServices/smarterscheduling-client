@@ -508,6 +508,36 @@ describe('Client', function testClient() {
 
   });
 
+  describe('Add Appointment', function testClient() {
+    const apiName = 'addAppointment';
+
+    before('Create Mocker', function () {
+      schedulingMock.postEndpointMocker(apiName);
+    });
+
+    it('Should Add Appointment', () => {
+      return client
+        .addAppointment(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Add Appointment', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.postEndpointMocker(apiName, 'fail');
+
+      return client
+        .addAppointment(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
   describe('List Appointment', function testClient() {
     const apiName = 'listAppointment';
 
