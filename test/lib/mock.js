@@ -65,6 +65,23 @@ const ProctorUMocker = {
     return scope;
   },
 
+  patchEndpointMocker: function (methodName, responseType = 'valid') {
+
+    let scope = nock(SCHEDULING_HOST)
+      .persist()
+      .patch(endpointRegex)
+      .reply(function () {
+        let statusCode = 200;
+
+        if (responseType === 'fail') {
+          statusCode = 404;
+        }
+        return [statusCode, mockData[methodName].response[responseType]];
+      });
+    this.activeMocks.push(scope);
+    return scope;
+  },
+
   deleteEndpointMocker: function (methodName, responseType = 'valid') {
 
     let scope = nock(SCHEDULING_HOST)
