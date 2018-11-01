@@ -58,6 +58,36 @@ describe('Client', function testClient() {
 
   });
 
+  describe('Get Account', function testClient() {
+    const apiName = 'getAccount';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should Get Account', () => {
+      return client
+        .getAccount(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Get Account', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .getAccount(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
   describe('List Account', function testClient() {
     const apiName = 'listAccount';
 
@@ -140,6 +170,36 @@ describe('Client', function testClient() {
 
       return client
         .addLocation(Object.assign({}, config, mockData[apiName].parameters))
+        .then(Promise.reject)
+        .catch((error) => {
+          expect(error).to.eql(mockData[apiName].response.fail);
+        });
+    });
+
+  });
+
+  describe('Get Location', function testClient() {
+    const apiName = 'getLocation';
+
+    before('Create Mocker', function () {
+      schedulingMock.getEndpointMocker(apiName);
+    });
+
+    it('Should Get Location', () => {
+      return client
+        .getLocation(Object.assign({}, config, mockData[apiName].parameters))
+        .then((response) => {
+          expect(response).to.eql(mockData[apiName].response.valid);
+        });
+    });
+
+    it('Should fail to Get Location', () => {
+
+      schedulingMock.removeInterceptor();
+      schedulingMock.getEndpointMocker(apiName, 'fail');
+
+      return client
+        .getLocation(Object.assign({}, config, mockData[apiName].parameters))
         .then(Promise.reject)
         .catch((error) => {
           expect(error).to.eql(mockData[apiName].response.fail);
