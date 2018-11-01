@@ -54,6 +54,25 @@
       }
     }
   },
+  "getAccount": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466"
+    },
+    "response": {
+      "valid": {
+        "sid": "SAb81222e1f38c4a9695269b76c9f20466",
+        "title": "Account of MA",
+        "externalId": "111",
+        "createdDate": "2018-10-15T13:30:57.000Z",
+        "editDate": "2018-10-15T13:30:57.000Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
   "listLocation": {
     "parameters": {
       "accountSid": "SA3cacf5fc6e024b39823a3f31f7eb096b",
@@ -105,6 +124,28 @@
         "createdDate": "2018-09-27T05:59:18.414Z",
         "lastModifiedDate": "2018-09-27T05:59:18.415Z",
         "systemModstamp": "2018-09-27T05:59:18.415Z"
+      },
+      "fail": {
+        "code": "1201",
+        "message": "Account not found for 'SA3cacf5fc6e024b39823a3f31f7eb096c'",
+        "status": 404
+      }
+    }
+  },
+  "getLocation": {
+    "parameters": {
+      "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+      "locationSid": "SLc74e37c2dbf147698dfd889a6e3d9200"
+    },
+    "response": {
+      "valid": {
+        "sid": "SLc74e37c2dbf147698dfd889a6e3d9200",
+        "accountSid": "SAb81222e1f38c4a9695269b76c9f20466",
+        "title": "MA Location",
+        "externalId": null,
+        "seatManagement": "basic",
+        "createdDate": "2018-09-27T09:02:20.919Z",
+        "editDate": "2018-09-27T09:02:20.919Z"
       },
       "fail": {
         "code": "1201",
